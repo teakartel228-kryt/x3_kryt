@@ -3,7 +3,7 @@ package com.example
 import com.mojang.serialization.MapCodec
 import java.util.*
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry
+import net.fabricmc.fabric.api.`object`.builder.v1.entity.FabricDefaultAttributeRegistry
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.core.Holder
@@ -140,13 +140,13 @@ class ClawsItem : Item(Item.Properties().stacksTo(1).durability(500).attributes(
 
 class HandPistonItem : Item(Item.Properties().stacksTo(1).durability(300)) {
 	override fun getUseAnimation(stack: ItemStack) = UseAnim.BOW
-	override fun getUseDuration(stack: ItemStack) = 72000
+	override fun getUseDuration(stack: ItemStack, entity: LivingEntity) = 72000
 	override fun use(level: Level, p: Player, h: InteractionHand): InteractionResultHolder<ItemStack> {
 		p.startUsingItem(h); return InteractionResultHolder.consume(p.getItemInHand(h))
 	}
 	override fun releaseUsing(stack: ItemStack, level: Level, e: LivingEntity, timeLeft: Int) {
 		if (level.isClientSide || e !is Player) return
-		val charged = getUseDuration(stack) - timeLeft >= 20
+		val charged = getUseDuration(stack, e) - timeLeft >= 20
 		val k = if (charged) 2.0 else 1.0
 		val look = e.lookAngle; val eye = e.eyePosition; val range = if (charged) 5.0 else 4.0
 		var hit = false
@@ -160,7 +160,7 @@ class HandPistonItem : Item(Item.Properties().stacksTo(1).durability(300)) {
 		if (bh is BlockHitResult && bh.type == HitResult.Type.BLOCK) {
 			val dir = bh.direction.opposite; val pos = bh.blockPos; val st = level.getBlockState(pos)
 			val steps = if (charged) 2 else 1
-			if (st.pushReaction == PushReaction.NORMAL && st.getDestroySpeed(level, pos) >= 0 && !st.hasBlockEntity()
+			if (st.pistonPushReaction == PushReaction.NORMAL && st.getDestroySpeed(level, pos) >= 0 && !st.hasBlockEntity()
 				&& (1..steps).all { level.getBlockState(pos.relative(dir, it)).isAir }) {
 				level.setBlock(pos.relative(dir, steps), st, 3); level.removeBlock(pos, false); hit = true
 			}
@@ -280,7 +280,7 @@ class HookItem(val tier: Int) : Item(Item.Properties().stacksTo(1)) {
 						Rt.setCharges(stack, Rt.charges(stack) - 1)
 						(p as? ServerPlayer)?.displayClientMessage(Component.translatable("msg.remake.charges", Rt.charges(stack)), true)
 					}
-				} else if (hands && st.useWithoutItem(level, bp, p, BlockHitResult(hv, face, bp, false)).consumesAction()) { }  // руки-крюки
+				} else if (hands && st.useWithoutItem(level, p, BlockHitResult(hv, face, bp, false)).consumesAction()) { }  // руки-крюки
 				else if (hs < 0 || hs >= 50f) cd = 20                                                       // обсидиан и т.п.
 				else if (st.block is FallingBlock) {
 					level.removeBlock(bp, false)
@@ -478,7 +478,7 @@ class StrongPistonBlock(p: BlockBehaviour.Properties) : Block(p) {
 		val line = ArrayList<BlockPos>(); var c = pos.relative(dir)
 		while (!level.getBlockState(c).isAir) {
 			val st = level.getBlockState(c)
-			if (line.size >= 12 || st.getDestroySpeed(level, c) < 0 || st.pushReaction != PushReaction.NORMAL || st.hasBlockEntity()) return
+			if (line.size >= 12 || st.getDestroySpeed(level, c) < 0 || st.pistonPushReaction != PushReaction.NORMAL || st.hasBlockEntity()) return
 			line.add(c); c = c.relative(dir)
 		}
 		val last = line.lastOrNull() ?: pos
