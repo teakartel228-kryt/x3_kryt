@@ -1,0 +1,26 @@
+{
+ "description": {
+  "translate": "enchantment.remake.pull_power"
+ },
+ "supported_items": [
+  "remake:hook_1",
+  "remake:hook_2",
+  "remake:hook_3",
+  "remake:hook_4",
+  "remake:hook_5"
+ ],
+ "weight": 8,
+ "max_level": 5,
+ "min_cost": {
+  "base": 8,
+  "per_level_above_first": 8
+ },
+ "max_cost": {
+  "base": 40,
+  "per_level_above_first": 8
+ },
+ "anvil_cost": 2,
+ "slots": [
+  "mainhand"
+ ]
+}

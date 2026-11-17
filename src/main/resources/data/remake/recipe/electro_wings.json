@@ -1,0 +1,23 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "pattern": [
+  "IGI",
+  "GDG",
+  "I I"
+ ],
+ "key": {
+  "I": {
+   "item": "minecraft:iron_ingot"
+  },
+  "G": {
+   "item": "minecraft:gold_ingot"
+  },
+  "D": {
+   "item": "minecraft:diamond"
+  }
+ },
+ "result": {
+  "id": "remake:electro_wings",
+  "count": 1
+ }
+}

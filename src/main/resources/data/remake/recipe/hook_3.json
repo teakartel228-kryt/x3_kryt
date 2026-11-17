@@ -1,0 +1,15 @@
+{
+ "type": "minecraft:crafting_shapeless",
+ "ingredients": [
+  {
+   "item": "remake:hook_2"
+  },
+  {
+   "item": "minecraft:diamond"
+  }
+ ],
+ "result": {
+  "id": "remake:hook_3",
+  "count": 1
+ }
+}

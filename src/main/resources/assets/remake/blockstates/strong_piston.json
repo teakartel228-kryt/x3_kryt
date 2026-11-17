@@ -1,0 +1,60 @@
+{
+ "multipart": [
+  {
+   "when": {
+    "facing": "up"
+   },
+   "apply": {
+    "model": "remake:block/strong_piston"
+   }
+  },
+  {
+   "when": {
+    "facing": "down"
+   },
+   "apply": {
+    "model": "remake:block/strong_piston",
+    "x": 180
+   }
+  },
+  {
+   "when": {
+    "facing": "north"
+   },
+   "apply": {
+    "model": "remake:block/strong_piston",
+    "x": 90
+   }
+  },
+  {
+   "when": {
+    "facing": "south"
+   },
+   "apply": {
+    "model": "remake:block/strong_piston",
+    "x": 90,
+    "y": 180
+   }
+  },
+  {
+   "when": {
+    "facing": "east"
+   },
+   "apply": {
+    "model": "remake:block/strong_piston",
+    "x": 90,
+    "y": 90
+   }
+  },
+  {
+   "when": {
+    "facing": "west"
+   },
+   "apply": {
+    "model": "remake:block/strong_piston",
+    "x": 90,
+    "y": 270
+   }
+  }
+ ]
+}

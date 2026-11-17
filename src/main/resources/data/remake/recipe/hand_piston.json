@@ -1,0 +1,19 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "pattern": [
+  "P",
+  "S"
+ ],
+ "key": {
+  "P": {
+   "item": "minecraft:piston"
+  },
+  "S": {
+   "item": "minecraft:stick"
+  }
+ },
+ "result": {
+  "id": "remake:hand_piston",
+  "count": 1
+ }
+}

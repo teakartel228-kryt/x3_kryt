@@ -1,0 +1,12 @@
+{
+ "parent": "minecraft:block/cube",
+ "textures": {
+  "up": "remake:block/sh_front",
+  "down": "remake:block/sh_side",
+  "north": "remake:block/sh_side",
+  "south": "remake:block/sh_side",
+  "east": "remake:block/sh_side",
+  "west": "remake:block/sh_side",
+  "particle": "remake:block/sh_side"
+ }
+}

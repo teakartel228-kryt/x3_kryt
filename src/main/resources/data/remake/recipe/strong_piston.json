@@ -1,0 +1,15 @@
+{
+ "type": "minecraft:crafting_shapeless",
+ "ingredients": [
+  {
+   "item": "minecraft:piston"
+  },
+  {
+   "item": "minecraft:redstone_block"
+  }
+ ],
+ "result": {
+  "id": "remake:strong_piston",
+  "count": 1
+ }
+}

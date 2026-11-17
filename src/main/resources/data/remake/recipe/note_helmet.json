@@ -1,0 +1,19 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "pattern": [
+  "INI",
+  "I I"
+ ],
+ "key": {
+  "I": {
+   "item": "minecraft:iron_ingot"
+  },
+  "N": {
+   "item": "minecraft:note_block"
+  }
+ },
+ "result": {
+  "id": "remake:note_helmet",
+  "count": 1
+ }
+}
